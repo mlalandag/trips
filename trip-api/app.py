@@ -36,15 +36,15 @@ def post_trips(user_id):
     db.trips.insert_one(item)
     
     # Use mongo connect, but this can be used as a failover
-    # message = {
-    #     "event": "trip-requested",
-    #     "data": {k:v for k,v in item.items() if k != "_id"}
-    # }
+    message = {
+        "event": "trip-requested",
+        "data": {k:v for k,v in item.items() if k != "_id"}
+    }
     
-    # producer.send(
-    #     'cabifly.trips', 
-    #     key=item["trip_id"].encode(), 
-    #     value=json.dumps(message).encode()
-    # )
+    producer.send(
+        'cabifly.trips', 
+        key=item["trip_id"].encode(), 
+        value=json.dumps(message).encode()
+    )
     
     return jsonify({k:v for k,v in item.items() if k != "_id"})
