@@ -1,0 +1,2 @@
+MONGO_DB_URI=mongodb+srv://mlalandag:mlalandag@cluster0.gei6qmv.mongodb.net/?retryWrites=true&w=majority
+KAFKA_BOOSTRAP_SERVERS=ec2-54-145-47-90.compute-1.amazonaws.com:9092

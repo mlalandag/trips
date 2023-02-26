@@ -1,0 +1,22 @@
+version: "3.4"
+
+services:
+  trip-manager:
+    build: ./trip-manager
+    env_file:
+       - 'env'
+  trip-api:
+    build: ./trip-api
+    env_file:
+      - 'env'
+  #   environment:
+  #     TRIP_API_URL: "http://trips:5000"      
+    ports:
+      - "5000:8001"
+  # mongo:
+  #   image: mongo
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: mlalandag
+  #     MONGO_INITDB_ROOT_PASSWORD: mlalandag
+  #   volumes:
+  #     - mongodb:/data/db/
