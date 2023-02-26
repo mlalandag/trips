@@ -25,7 +25,7 @@ for message in consumer:
 
     if event == "trip-requested":
         drones = requests.get(
-            "http://drones-api:8002/drones",
+            "https://bav1irtppi.execute-api.us-east-1.amazonaws.com/dev/drones",
             params={
                 "lon": data["location"][0],
                 "lat": data["location"][1],
