@@ -12,7 +12,7 @@ services:
   #   environment:
   #     TRIP_API_URL: "http://trips:5000"      
     ports:
-      - "5000:8001"
+      - "8001:5000"
   # mongo:
   #   image: mongo
   #   environment:
