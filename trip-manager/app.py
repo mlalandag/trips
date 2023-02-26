@@ -11,7 +11,7 @@ client = pymongo.MongoClient(MONGO_DB_URI, tlsAllowInvalidCertificates=True)
 db = client.cabifly
 
 consumer = KafkaConsumer(
-    'cabifly.drones',
+    'cabifly.trips',
      bootstrap_servers=[KAFKA_BOOSTRAP_SERVERS],
      auto_offset_reset='earliest'
 )
@@ -21,10 +21,11 @@ for message in consumer:
     item = json.loads(message.value)
     event = item["event"]
     data = item["data"]
+    print(f"event >> {event}, data >> {data}")
 
     if event == "trip-requested":
         drones = requests.get(
-            "http://localhost:8000/drones",
+            "http://drones-api:8002/drones",
             params={
                 "lon": data["location"][0],
                 "lat": data["location"][1],

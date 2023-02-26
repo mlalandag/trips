@@ -1,11 +1,20 @@
 import pymongo
-from flask import Flask, request, jsonify
+import datetime
+from uuid import uuid4
+import json
 import os
+from flask import Flask, request, jsonify
+from kafka import KafkaProducer
 
 MONGO_DB_URI=os.environ.get("MONGO_DB_URI")
+KAFKA_BOOSTRAP_SERVERS=os.environ.get("KAFKA_BOOSTRAP_SERVERS")
 
 client = pymongo.MongoClient(MONGO_DB_URI, tlsAllowInvalidCertificates=True)
 db = client.cabifly
+
+producer = KafkaProducer(
+    bootstrap_servers=[KAFKA_BOOSTRAP_SERVERS],
+)
 
 app = Flask(__name__)
 
